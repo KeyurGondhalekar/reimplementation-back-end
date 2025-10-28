@@ -6,6 +6,28 @@ begin
       name: 'North Carolina State University',
     ).id
     
+    # Insert initial data into the roles table
+    Role.create!(
+      name: 'Super Administrator',
+      parent_id: nil
+    )
+    Role.create!(
+      name: 'Administrator',
+      parent_id: 1
+    )
+    Role.create!(
+      name: 'Instructor',
+      parent_id: 2
+    )
+    Role.create!(
+      name: 'Teaching Assistant',
+      parent_id: 3
+    )
+    Role.create!(
+      name: 'Student',
+      parent_id: 4
+    )
+    
     # Create an admin user
     User.create!(
       name: 'admin',
@@ -126,5 +148,5 @@ begin
 
 
 rescue ActiveRecord::RecordInvalid => e
-    puts 'The db has already been seeded'
+    puts 'The db has already been seeded' + e.message
 end
